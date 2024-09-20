@@ -375,9 +375,8 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                               if (onSearch && widget.searchType == _SearchType.onListData)
                                 if (!widget.hideSelectedFieldWhenOpen)
                                   Padding(
-                                    padding: widget.items.isEmpty
-                                        ? EdgeInsets.zero
-                                        : widget.searchFieldPadding ?? EdgeInsets.zero,
+                                    padding:
+                                        items.isEmpty ? EdgeInsets.zero : widget.searchFieldPadding ?? EdgeInsets.zero,
                                     child: _SearchField<T>.forListData(
                                       items: widget.items,
                                       searchHintText: widget.searchHintText,
@@ -405,7 +404,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                           ],
                                           Expanded(
                                             child: Padding(
-                                              padding: widget.items.isEmpty
+                                              padding: items.isEmpty
                                                   ? EdgeInsets.zero
                                                   : widget.searchFieldPadding ?? EdgeInsets.zero,
                                               child: _SearchField<T>.forListData(
@@ -427,9 +426,8 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                               else if (onSearch && widget.searchType == _SearchType.onRequestData)
                                 if (!widget.hideSelectedFieldWhenOpen)
                                   Padding(
-                                    padding: widget.items.isEmpty
-                                        ? EdgeInsets.zero
-                                        : widget.searchFieldPadding ?? EdgeInsets.zero,
+                                    padding:
+                                        items.isEmpty ? EdgeInsets.zero : widget.searchFieldPadding ?? EdgeInsets.zero,
                                     child: _SearchField<T>.forRequestData(
                                       items: widget.items,
                                       searchHintText: widget.searchHintText,
@@ -465,7 +463,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                           ],
                                           Expanded(
                                             child: Padding(
-                                              padding: widget.items.isEmpty
+                                              padding: items.isEmpty
                                                   ? EdgeInsets.zero
                                                   : widget.searchFieldPadding ?? EdgeInsets.zero,
                                               child: _SearchField<T>.forRequestData(
