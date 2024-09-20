@@ -340,7 +340,8 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (!widget.hideSelectedFieldWhenOpen)
-                                InkWell(
+                                GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     setState(() => displayOverly = false);
                                   },
@@ -378,7 +379,8 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                     decoration: decoration?.searchFieldDecoration,
                                   )
                                 else
-                                  InkWell(
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       setState(() => displayOverly = false);
                                     },
@@ -428,7 +430,8 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                     decoration: decoration?.searchFieldDecoration,
                                   )
                                 else
-                                  InkWell(
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       setState(() => displayOverly = false);
                                     },
