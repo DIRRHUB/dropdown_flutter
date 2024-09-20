@@ -180,6 +180,8 @@ class DropdownFlutter<T> extends StatefulWidget {
 
   final _DropdownType _dropdownType;
 
+  final EdgeInsets? searchFieldPadding;
+
   DropdownFlutter({
     super.key,
     required this.items,
@@ -207,6 +209,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.excludeSelected = true,
     this.enabled = true,
     this.disabledDecoration,
+    this.searchFieldPadding,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -216,9 +219,7 @@ class DropdownFlutter<T> extends StatefulWidget {
           'Initial item must match with one of the item in items list.',
         ),
         assert(
-          controller == null ||
-              controller.value == null ||
-              items!.contains(controller.value),
+          controller == null || controller.value == null || items!.contains(controller.value),
           'Controller value must match with one of the item in items list.',
         ),
         _searchType = null,
@@ -267,6 +268,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.enabled = true,
     this.disabledDecoration,
     this.closeDropDownOnClearFilterSearch = false,
+    this.searchFieldPadding,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -276,9 +278,7 @@ class DropdownFlutter<T> extends StatefulWidget {
           'Initial item must match with one of the item in items list.',
         ),
         assert(
-          controller == null ||
-              controller.value == null ||
-              items!.contains(controller.value),
+          controller == null || controller.value == null || items!.contains(controller.value),
           'Controller value must match with one of the item in items list.',
         ),
         _searchType = _SearchType.onListData,
@@ -326,6 +326,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.enabled = true,
     this.disabledDecoration,
     this.closeDropDownOnClearFilterSearch = false,
+    this.searchFieldPadding,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -365,14 +366,13 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.listItemPadding,
     this.enabled = true,
     this.disabledDecoration,
+    this.searchFieldPadding,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
         ),
         assert(
-          initialItems == null ||
-              initialItems.isEmpty ||
-              initialItems.any((e) => items!.contains(e)),
+          initialItems == null || initialItems.isEmpty || initialItems.any((e) => items!.contains(e)),
           'Initial items must match with the items in the items list.',
         ),
         assert(
@@ -427,14 +427,13 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.enabled = true,
     this.disabledDecoration,
     this.closeDropDownOnClearFilterSearch = false,
+    this.searchFieldPadding,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
         ),
         assert(
-          initialItems == null ||
-              initialItems.isEmpty ||
-              initialItems.any((e) => items!.contains(e)),
+          initialItems == null || initialItems.isEmpty || initialItems.any((e) => items!.contains(e)),
           'Initial items must match with the items in the items list.',
         ),
         assert(
@@ -488,6 +487,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.enabled = true,
     this.disabledDecoration,
     this.closeDropDownOnClearFilterSearch = false,
+    this.searchFieldPadding,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
@@ -514,11 +514,9 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
   void initState() {
     super.initState();
 
-    selectedItemNotifier =
-        widget.controller ?? SingleSelectController(widget.initialItem);
+    selectedItemNotifier = widget.controller ?? SingleSelectController(widget.initialItem);
 
-    selectedItemsNotifier = widget.multiSelectController ??
-        MultiSelectController(widget.initialItems ?? []);
+    selectedItemsNotifier = widget.multiSelectController ?? MultiSelectController(widget.initialItems ?? []);
 
     selectedItemNotifier.addListener(() {
       widget.onChanged?.call(selectedItemNotifier.value);
@@ -541,27 +539,23 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
   void didUpdateWidget(covariant DropdownFlutter<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.initialItem != oldWidget.initialItem &&
-        selectedItemNotifier.value != widget.initialItem) {
+    if (widget.initialItem != oldWidget.initialItem && selectedItemNotifier.value != widget.initialItem) {
       SchedulerBinding.instance.addPostFrameCallback((_) {
         selectedItemNotifier.value = widget.initialItem;
       });
     }
 
-    if (widget.initialItems != oldWidget.initialItems &&
-        selectedItemsNotifier.value != widget.initialItems) {
+    if (widget.initialItems != oldWidget.initialItems && selectedItemsNotifier.value != widget.initialItems) {
       SchedulerBinding.instance.addPostFrameCallback((_) {
         selectedItemsNotifier.value = widget.initialItems ?? [];
       });
     }
 
-    if (widget.controller != oldWidget.controller &&
-        widget.controller != null) {
+    if (widget.controller != oldWidget.controller && widget.controller != null) {
       selectedItemNotifier = widget.controller!;
     }
 
-    if (widget.multiSelectController != oldWidget.multiSelectController &&
-        widget.multiSelectController != null) {
+    if (widget.multiSelectController != oldWidget.multiSelectController && widget.multiSelectController != null) {
       selectedItemsNotifier = widget.multiSelectController!;
     }
   }
@@ -590,12 +584,10 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
       child: FormField<(T?, List<T>)>(
         initialValue: (selectedItemNotifier.value, selectedItemsNotifier.value),
         validator: (val) {
-          if (widget._dropdownType == _DropdownType.singleSelect &&
-              widget.validator != null) {
+          if (widget._dropdownType == _DropdownType.singleSelect && widget.validator != null) {
             return widget.validator!(val?.$1);
           }
-          if (widget._dropdownType == _DropdownType.multipleSelect &&
-              widget.listValidator != null) {
+          if (widget._dropdownType == _DropdownType.multipleSelect && widget.listValidator != null) {
             return widget.listValidator!(val?.$2 ?? []);
           }
           return null;
@@ -628,8 +620,7 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                         selectedItemsNotifier.value = currentVal;
                     }
                   },
-                  noResultFoundText:
-                      widget.noResultFoundText ?? 'No result found.',
+                  noResultFoundText: widget.noResultFoundText ?? 'No result found.',
                   noResultFoundBuilder: widget.noResultFoundBuilder,
                   items: widget.items ?? [],
                   itemsScrollCtrl: widget.itemsScrollController,
@@ -655,15 +646,14 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                   searchType: widget._searchType,
                   futureRequest: widget.futureRequest,
                   futureRequestDelay: widget.futureRequestDelay,
-                  hideSelectedFieldWhenOpen:
-                      widget.hideSelectedFieldWhenExpanded,
+                  hideSelectedFieldWhenOpen: widget.hideSelectedFieldWhenExpanded,
                   maxLines: widget.maxlines,
                   headerPadding: widget.expandedHeaderPadding,
                   itemsListPadding: widget.itemsListPadding,
                   listItemPadding: widget.listItemPadding,
-                  searchRequestLoadingIndicator:
-                      widget.searchRequestLoadingIndicator,
+                  searchRequestLoadingIndicator: widget.searchRequestLoadingIndicator,
                   dropdownType: widget._dropdownType,
+                  searchFieldPadding: widget.searchFieldPadding,
                 );
               },
               child: (showCallback) {
@@ -682,28 +672,16 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                         : enabled
                             ? decoration?.closedBorderRadius
                             : disabledDecoration?.borderRadius,
-                    shadow: enabled
-                        ? decoration?.closedShadow
-                        : disabledDecoration?.shadow,
-                    hintStyle: enabled
-                        ? decoration?.hintStyle
-                        : disabledDecoration?.hintStyle,
-                    headerStyle: enabled
-                        ? decoration?.headerStyle
-                        : disabledDecoration?.headerStyle,
+                    shadow: enabled ? decoration?.closedShadow : disabledDecoration?.shadow,
+                    hintStyle: enabled ? decoration?.hintStyle : disabledDecoration?.hintStyle,
+                    headerStyle: enabled ? decoration?.headerStyle : disabledDecoration?.headerStyle,
                     hintText: safeHintText,
                     hintBuilder: widget.hintBuilder,
                     headerBuilder: widget.headerBuilder,
                     headerListBuilder: widget.headerListBuilder,
-                    prefixIcon: enabled
-                        ? decoration?.prefixIcon
-                        : disabledDecoration?.prefixIcon,
-                    suffixIcon: enabled
-                        ? decoration?.closedSuffixIcon
-                        : disabledDecoration?.suffixIcon,
-                    fillColor: enabled
-                        ? decoration?.closedFillColor
-                        : disabledDecoration?.fillColor,
+                    prefixIcon: enabled ? decoration?.prefixIcon : disabledDecoration?.prefixIcon,
+                    suffixIcon: enabled ? decoration?.closedSuffixIcon : disabledDecoration?.suffixIcon,
+                    fillColor: enabled ? decoration?.closedFillColor : disabledDecoration?.fillColor,
                     maxLines: widget.maxlines,
                     headerPadding: widget.closedHeaderPadding,
                     dropdownType: widget._dropdownType,
