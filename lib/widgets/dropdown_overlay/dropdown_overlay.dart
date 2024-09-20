@@ -341,7 +341,6 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                             children: [
                               if (!widget.hideSelectedFieldWhenOpen)
                                 GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     setState(() => displayOverly = false);
                                   },
@@ -380,7 +379,6 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                   )
                                 else
                                   GestureDetector(
-                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       setState(() => displayOverly = false);
                                     },
@@ -431,7 +429,6 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                   )
                                 else
                                   GestureDetector(
-                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       setState(() => displayOverly = false);
                                     },
