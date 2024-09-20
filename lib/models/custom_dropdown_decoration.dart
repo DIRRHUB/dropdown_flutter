@@ -92,5 +92,5 @@ class CustomDropdownDecoration {
     this.listItemDecoration,
   });
 
-  static const Color _defaultFillColor = Colors.white;
+  static const Color _defaultFillColor = Colors.black;
 }
