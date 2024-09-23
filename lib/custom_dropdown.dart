@@ -603,6 +603,7 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
         builder: (formFieldState) {
           _formFieldState = formFieldState;
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               _OverlayBuilder(
