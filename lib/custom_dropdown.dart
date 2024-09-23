@@ -610,6 +610,7 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
                   errorStyle: decoration?.errorTextStyle ?? _defaultErrorStyle,
+                  hintStyle: decoration?.hintStyle,
                   border: InputBorder.none,
                 ),
                 child: _OverlayBuilder(
