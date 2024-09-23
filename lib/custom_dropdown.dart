@@ -695,14 +695,15 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                   );
                 },
               ),
-              Padding(
-                padding: widget.validationErrorPadding ?? EdgeInsets.zero,
-                child: Text(
-                  formFieldState.errorText ?? '',
-                  style: decoration?.errorTextStyle ?? _defaultErrorStyle,
-                  maxLines: 1,
+              if (formFieldState.hasError || formFieldState.errorText != null)
+                Padding(
+                  padding: widget.validationErrorPadding ?? EdgeInsets.zero,
+                  child: Text(
+                    formFieldState.errorText ?? '',
+                    style: decoration?.errorTextStyle ?? _defaultErrorStyle,
+                    maxLines: 1,
+                  ),
                 ),
-              ),
             ],
           );
         },
