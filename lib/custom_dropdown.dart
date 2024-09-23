@@ -610,7 +610,7 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
               contentPadding: widget.validationErrorPadding ?? EdgeInsets.zero,
             ),
             child: _OverlayBuilder(
-              overlayPortalController: widget.overlayConatroller,
+              overlayPortalController: widget.overlayController,
               visibility: widget.visibility,
               overlay: (size, hideCallback) {
                 return _DropdownOverlay<T>(
