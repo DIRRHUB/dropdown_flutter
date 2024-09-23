@@ -37,6 +37,7 @@ class _DropdownOverlay<T> extends StatefulWidget {
   final CustomDropdownDecoration? decoration;
   final _DropdownType dropdownType;
   final EdgeInsets? searchFieldPadding;
+  
 
   const _DropdownOverlay({
     Key? key,

@@ -54,7 +54,7 @@ class CustomDropdownDecoration {
   final TextStyle? noResultFoundStyle;
 
   /// The style to use for the string returning from [validator].
-  final TextStyle? errorStyle;
+  final InputDecoration? errorInputDecoration;
 
   /// The style to use for the [DropdownFlutter] list item text.
   final TextStyle? listItemStyle;
@@ -85,7 +85,7 @@ class CustomDropdownDecoration {
     this.hintStyle,
     this.headerStyle,
     this.noResultFoundStyle,
-    this.errorStyle,
+    this.errorInputDecoration,
     this.listItemStyle,
     this.overlayScrollbarDecoration,
     this.searchFieldDecoration,

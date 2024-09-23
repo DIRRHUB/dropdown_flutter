@@ -603,12 +603,13 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
         builder: (formFieldState) {
           _formFieldState = formFieldState;
           return InputDecorator(
-            decoration: InputDecoration(
-              errorStyle: decoration?.errorStyle ?? _defaultErrorStyle,
-              errorText: formFieldState.errorText,
-              border: InputBorder.none,
-              contentPadding: widget.validationErrorPadding ?? EdgeInsets.zero,
-            ),
+            decoration: decoration?.errorInputDecoration?.copyWith(errorText: formFieldState.errorText) ??
+                InputDecoration(
+                  errorStyle: _defaultErrorStyle,
+                  errorText: formFieldState.errorText,
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
             child: _OverlayBuilder(
               overlayPortalController: widget.overlayController,
               visibility: widget.visibility,
