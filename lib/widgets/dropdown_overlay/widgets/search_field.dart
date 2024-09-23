@@ -57,7 +57,7 @@ class _SearchFieldState<T> extends State<_SearchField<T>> {
 
   @override
   void dispose() {
-    searchCtrl.dispose();
+    //searchCtrl.dispose();
     _delayTimer?.cancel();
     super.dispose();
   }
