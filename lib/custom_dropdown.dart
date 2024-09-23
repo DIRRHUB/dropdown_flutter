@@ -695,15 +695,13 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                   );
                 },
               ),
-              InputDecorator(
-                decoration: decoration?.errorInputDecoration?.copyWith(errorText: formFieldState.errorText) ??
-                    InputDecoration(
-                      errorStyle: _defaultErrorStyle,
-                      errorText: formFieldState.errorText,
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                child: const SizedBox(),
+              Padding(
+                padding: widget.validationErrorPadding ?? EdgeInsets.zero,
+                child: Text(
+                  formFieldState.errorText ?? '',
+                  style: decoration?.errorTextStyle ?? _defaultErrorStyle,
+                  maxLines: 1,
+                ),
               ),
             ],
           );
