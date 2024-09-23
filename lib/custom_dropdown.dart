@@ -184,6 +184,8 @@ class DropdownFlutter<T> extends StatefulWidget {
 
   final EdgeInsets? validationErrorPadding;
 
+  final TextEditingController? searchController;
+
   DropdownFlutter({
     super.key,
     required this.items,
@@ -213,6 +215,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.disabledDecoration,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -273,6 +276,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.closeDropDownOnClearFilterSearch = false,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -332,6 +336,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.closeDropDownOnClearFilterSearch = false,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItem == null || controller == null,
           'Only one of initialItem or controller can be specified at a time',
@@ -373,6 +378,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.disabledDecoration,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
@@ -435,6 +441,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.closeDropDownOnClearFilterSearch = false,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
@@ -496,6 +503,7 @@ class DropdownFlutter<T> extends StatefulWidget {
     this.closeDropDownOnClearFilterSearch = false,
     this.searchFieldPadding,
     this.validationErrorPadding,
+    this.searchController,
   })  : assert(
           initialItems == null || multiSelectController == null,
           'Only one of initialItems or controller can be specified at a time',
@@ -631,6 +639,7 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
                             selectedItemsNotifier.value = currentVal;
                         }
                       },
+                      searchController: widget.searchController,
                       noResultFoundText: widget.noResultFoundText ?? 'No result found.',
                       noResultFoundBuilder: widget.noResultFoundBuilder,
                       items: widget.items ?? [],

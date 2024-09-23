@@ -37,7 +37,7 @@ class _DropdownOverlay<T> extends StatefulWidget {
   final CustomDropdownDecoration? decoration;
   final _DropdownType dropdownType;
   final EdgeInsets? searchFieldPadding;
-  
+  final TextEditingController? searchController;
 
   const _DropdownOverlay({
     Key? key,
@@ -76,6 +76,7 @@ class _DropdownOverlay<T> extends StatefulWidget {
     required this.headerListBuilder,
     required this.noResultFoundBuilder,
     required this.searchFieldPadding,
+    required this.searchController,
   });
 
   @override
@@ -379,6 +380,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                     padding:
                                         items.isEmpty ? EdgeInsets.zero : widget.searchFieldPadding ?? EdgeInsets.zero,
                                     child: _SearchField<T>.forListData(
+                                      searchController: widget.searchController,
                                       items: widget.items,
                                       searchHintText: widget.searchHintText,
                                       onSearchedItems: (val) {
@@ -409,6 +411,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                                   ? EdgeInsets.zero
                                                   : widget.searchFieldPadding ?? EdgeInsets.zero,
                                               child: _SearchField<T>.forListData(
+                                                searchController: widget.searchController,
                                                 items: widget.items,
                                                 searchHintText: widget.searchHintText,
                                                 onSearchedItems: (val) {
@@ -430,6 +433,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                     padding:
                                         items.isEmpty ? EdgeInsets.zero : widget.searchFieldPadding ?? EdgeInsets.zero,
                                     child: _SearchField<T>.forRequestData(
+                                      searchController: widget.searchController,
                                       items: widget.items,
                                       searchHintText: widget.searchHintText,
                                       onFutureRequestLoading: (val) {
@@ -468,6 +472,7 @@ class _DropdownOverlayState<T> extends State<_DropdownOverlay<T>> {
                                                   ? EdgeInsets.zero
                                                   : widget.searchFieldPadding ?? EdgeInsets.zero,
                                               child: _SearchField<T>.forRequestData(
+                                                searchController: widget.searchController,
                                                 items: widget.items,
                                                 searchHintText: widget.searchHintText,
                                                 onFutureRequestLoading: (val) {
