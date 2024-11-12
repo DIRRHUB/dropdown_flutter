@@ -537,7 +537,8 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
     selectedItemNotifier.addListener(() {
       widget.onChanged?.call(selectedItemNotifier.value);
       _formFieldState?.didChange((selectedItemNotifier.value, []));
-      if (widget.validateOnChange) {
+      final isFirstValidation = selectedItemNotifier.value == null;
+      if (widget.validateOnChange && !isFirstValidation) {
         _formFieldState?.validate();
       }
     });
@@ -545,7 +546,8 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
     selectedItemsNotifier.addListener(() {
       widget.onListChanged?.call(selectedItemsNotifier.value);
       _formFieldState?.didChange((null, selectedItemsNotifier.value));
-      if (widget.validateOnChange) {
+      final isFirstValidation = selectedItemsNotifier.value.isEmpty;
+      if (widget.validateOnChange && !isFirstValidation) {
         _formFieldState?.validate();
       }
     });
