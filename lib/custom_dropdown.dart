@@ -534,14 +534,11 @@ class _DropdownFlutterState<T> extends State<DropdownFlutter<T>> {
 
     selectedItemsNotifier = widget.multiSelectController ?? MultiSelectController(widget.initialItems ?? []);
 
-    bool isValidated = selectedItemNotifier.hasValue;
-
     selectedItemNotifier.addListener(() {
       widget.onChanged?.call(selectedItemNotifier.value);
       _formFieldState?.didChange((selectedItemNotifier.value, []));
-      if (widget.validateOnChange && !isValidated) {
+      if (widget.validateOnChange) {
         _formFieldState?.validate();
-        isValidated = true;
       }
     });
 
